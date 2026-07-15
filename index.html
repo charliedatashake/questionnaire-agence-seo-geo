@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Fiche de différenciation de votre agence - In Extenso</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Arimo:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#00002C; --orange:#F58220; --cyan:#00AADB; --grey:#EFF4F6;
+    --font-title:"Trade Gothic LT Std BoldCn","Oswald","Arial Narrow",sans-serif;
+    --font-body:"Trade Gothic LT Std","Arimo",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{font-family:var(--font-body);font-size:17px;line-height:1.6;color:#1a1a1a;background:var(--grey);min-height:100vh;display:flex;flex-direction:column;}
+  /* Header */
+  .topbar{background:var(--ink);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .topbar img{height:44px;width:auto;display:block;}
+  .topbar .who{color:#aac4e6;font-size:14px;text-align:right;line-height:1.3;}
+  .topbar .who strong{color:#fff;font-family:var(--font-title);text-transform:uppercase;font-weight:500;font-size:15px;letter-spacing:.03em;display:block;}
+  /* Progress */
+  .progress{background:#00104a;height:6px;position:relative;}
+  .progress .fill{position:absolute;left:0;top:0;bottom:0;background:var(--orange);width:0%;transition:width .35s ease;}
+  .meta{max-width:720px;margin:26px auto 0;padding:0 22px;width:100%;display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
+  .meta .section{font-family:var(--font-title);text-transform:uppercase;color:var(--orange);font-size:15px;letter-spacing:.05em;font-weight:600;}
+  .meta .count{font-size:13px;color:#66707a;}
+  /* Card */
+  .stage{flex:1;display:flex;flex-direction:column;}
+  .card{background:#fff;max-width:720px;width:calc(100% - 44px);margin:10px auto 30px;padding:38px 40px 34px;border:1px solid #e3e9ee;border-top:5px solid var(--orange);}
+  h1,h2{font-family:var(--font-title);text-transform:uppercase;font-weight:500;color:var(--ink);line-height:1.08;margin:0 0 14px;}
+  h1{font-size:34px;}
+  h2{font-size:26px;}
+  .help{color:#4a5560;font-size:15.5px;margin:0 0 20px;}
+  .example{background:var(--grey);border-left:4px solid var(--cyan);padding:12px 16px;font-size:14.5px;color:#33404c;margin:0 0 20px;}
+  .example strong{font-family:var(--font-title);text-transform:uppercase;font-weight:600;font-size:13px;color:var(--cyan);letter-spacing:.04em;display:block;margin-bottom:4px;}
+  .optional-pill{display:inline-block;background:#e6edf2;color:#4a5560;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 10px;border-radius:20px;vertical-align:middle;margin-left:8px;}
+  label.f{display:block;font-weight:700;font-size:15px;margin:16px 0 6px;color:var(--ink);}
+  input[type=text],input[type=email],input[type=tel],input[type=number],input[type=url],textarea,select{
+    width:100%;padding:13px 14px;border:2px solid #d6dee5;background:#fff;font-family:var(--font-body);font-size:16px;color:#1a1a1a;outline:none;border-radius:0;
+  }
+  input:focus,textarea:focus,select:focus{border-color:var(--cyan);}
+  textarea{min-height:130px;resize:vertical;}
+  .radio-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;}
+  .radio-row label{border:2px solid #d6dee5;padding:10px 18px;cursor:pointer;font-size:15px;display:flex;align-items:center;gap:8px;background:#fff;}
+  .radio-row label:has(input:checked){border-color:var(--orange);background:#fff7ef;font-weight:700;}
+  .radio-row input{accent-color:var(--orange);}
+  .err{color:#c62828;font-size:14px;margin-top:10px;display:none;font-weight:700;}
+  /* Nav */
+  .nav{display:flex;justify-content:space-between;align-items:center;margin-top:28px;gap:14px;flex-wrap:wrap;}
+  .btn{display:inline-block;background:var(--ink);color:#fff;font-family:var(--font-body);font-size:16px;font-weight:700;padding:14px 30px;border:0;border-radius:0;cursor:pointer;transition:background .2s;}
+  .btn:hover{background:var(--orange);}
+  .btn.orange{background:var(--orange);}
+  .btn.orange:hover{background:var(--ink);}
+  .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:12px 24px;}
+  .btn.ghost:hover{background:var(--ink);color:#fff;}
+  .btn:disabled{opacity:.5;cursor:default;}
+  .keyhint{font-size:13px;color:#8a949e;}
+  .keyhint kbd{background:#fff;border:1px solid #d6dee5;padding:1px 7px;font-size:12px;border-radius:3px;font-family:var(--font-body);}
+  /* Welcome */
+  .welcome .bar{width:74px;height:6px;background:var(--orange);margin:0 0 22px;}
+  .welcome ul{padding-left:20px;margin:0 0 20px;}
+  .welcome li{margin-bottom:8px;}
+  .badges{display:flex;gap:14px;flex-wrap:wrap;margin:24px 0;}
+  .badge{background:var(--grey);padding:14px 20px;flex:1;min-width:170px;}
+  .badge .v{font-family:var(--font-title);font-size:26px;color:var(--orange);line-height:1.1;}
+  .badge .l{font-size:13.5px;color:#4a5560;}
+  /* Recap */
+  .recap-item{border-bottom:1px solid #e3e9ee;padding:13px 0;}
+  .recap-item .q{font-weight:700;font-size:14px;color:var(--ink);}
+  .recap-item .a{font-size:15px;color:#33404c;white-space:pre-wrap;}
+  .recap-item .a.empty{color:#9aa4ae;font-style:italic;}
+  .recap-item button{background:none;border:0;color:var(--cyan);font-weight:700;cursor:pointer;font-size:13.5px;padding:0;font-family:var(--font-body);}
+  /* Done */
+  .done{text-align:center;padding:60px 40px;}
+  .done .check{width:74px;height:74px;border-radius:50%;background:var(--orange);color:#fff;font-size:38px;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;}
+  footer{text-align:center;font-size:12.5px;color:#8a949e;padding:14px 22px 26px;max-width:720px;margin:0 auto;}
+  .savemsg{font-size:12.5px;color:#8a949e;margin-top:14px;}
+  @media(max-width:640px){
+    .card{padding:26px 20px;width:calc(100% - 28px);}
+    h1{font-size:27px;}h2{font-size:22px;}
+    .topbar img{height:36px;}
+    .topbar .who{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <img src="logo-inextenso.svg" alt="In Extenso">
+  <div class="who"><strong id="topAgence">Fiche agence</strong><span>Visibilité locale de votre agence</span></div>
+</div>
+<div class="progress"><div class="fill" id="bar"></div></div>
+<div class="meta" id="meta" style="display:none;">
+  <span class="section" id="metaSection"></span>
+  <span class="count" id="metaCount"></span>
+</div>
+
+<div class="stage" id="stage"></div>
+
+<footer>
+  Les informations transmises servent exclusivement à enrichir la page de votre agence sur inextenso.fr.
+  Vos nom et email professionnels ne sont utilisés que pour le suivi interne de cette collecte.
+</footer>
+
+<script>
+/* ==== CONFIG ==== */
+var ENDPOINT = "APPS_SCRIPT_URL"; // URL du deploiement Apps Script (voir README)
+
+/* ==== QUESTIONNAIRE V2 ==== */
+var SECTIONS = ["Votre agence", "Expertises & différenciation", "Disponibilité & relation client", "Preuves & vie locale"];
+var QUESTIONS = [
+  {id:"agence", s:0, type:"agence", req:true,
+   label:"Quelle est votre agence ?",
+   help:"Sélectionnez votre agence dans la liste. Si vous êtes arrivé ici via le lien reçu par email, elle est déjà pré-remplie."},
+  {id:"rempli_par", s:0, type:"fields", req:true,
+   label:"Qui remplit cette fiche ?",
+   help:"Pour pouvoir revenir vers vous si besoin de précisions.",
+   fields:[{k:"nom",label:"Votre nom et votre fonction",ph:"Ex : Marie Dupont, expert-comptable associée",type:"text"},
+           {k:"email",label:"Votre email professionnel",ph:"prenom.nom@inextenso.fr",type:"email"}]},
+  {id:"annee", s:0, type:"number", req:true, min:1900, max:2026,
+   label:"Depuis quelle année votre agence est-elle implantée dans la ville ?",
+   help:"L'ancienneté locale est un signal fort de confiance pour vos futurs clients.", ph:"Ex : 1998"},
+  {id:"effectif", s:0, type:"fields", req:true,
+   label:"Quelle est la taille de votre équipe ?",
+   help:"Du concret et du chiffré, c'est ce qui vous distingue le plus.",
+   fields:[{k:"collaborateurs",label:"Nombre de collaborateurs",ph:"Ex : 18",type:"number"},
+           {k:"diplomes",label:"Dont experts-comptables diplômés",ph:"Ex : 3",type:"number"}]},
+  {id:"contact", s:0, type:"fields", req:true,
+   label:"Comment vous joindre ?",
+   fields:[{k:"telephone",label:"Téléphone direct de l'agence",ph:"Ex : 02 41 00 00 00",type:"tel"},
+           {k:"horaires",label:"Horaires d'ouverture",ph:"Ex : du lundi au vendredi, 8h30 - 18h",type:"text"}]},
+  {id:"acces", s:0, type:"textarea", req:true,
+   label:"Comment accède-t-on à votre agence ?",
+   help:"Parking, transports en commun, et surtout vos repères locaux, le quartier, la zone d'activité, ce qu'il y a en face.",
+   ex:"Parking gratuit devant l'agence. Bus ligne 4, arrêt Mairie. Dans la zone d'activité des Landiers, en face du garage Renault."},
+  {id:"zone", s:0, type:"textarea", req:true,
+   label:"Quelles communes et quartiers couvrez-vous ?",
+   help:"Listez les communes voisines d'où viennent réellement vos clients.",
+   ex:"Angers et sa première couronne : Avrillé, Beaucouzé, Les Ponts-de-Cé, Trélazé. Quelques clients jusqu'à Segré."},
+  {id:"secteurs", s:1, type:"textarea", req:true,
+   label:"Quelles sont vos spécialités sectorielles ?",
+   help:"C'est ce qui vous différencie le plus. Agriculture, viticulture, BTP, restauration-hôtellerie, santé, professions libérales, ESS, e-commerce, artisanat...",
+   ex:"Forte dominante agricole et viticole (40 % de la clientèle). Pôle dédié aux professions de santé, 2 collaborateurs spécialisés HORECA."},
+  {id:"clients_services", s:1, type:"textarea", req:true,
+   label:"Quels clients accompagnez-vous le plus, et sur quels services ?",
+   help:"Vos profils de clients types (artisans, commerçants, TPE, PME, libéraux, agriculteurs...) et les services qui pèsent le plus dans votre activité au quotidien.",
+   ex:"Majorité d'artisans et de TPE de moins de 10 salariés. Beaucoup de créations d'entreprise (une cinquantaine par an) et de missions de pilotage mensuel."},
+  {id:"differenciation", s:1, type:"textarea", req:true,
+   label:"Qu'est-ce qui vous différencie des autres cabinets de votre ville ?",
+   help:"Répondez comme si un futur client vous posait la question en face. Des faits, pas de langue de bois.",
+   ex:"Seul cabinet de la ville avec un pôle juridique intégré. Chaque client a un interlocuteur dédié joignable en direct, pas de plateforme téléphonique."},
+  {id:"engagement", s:1, type:"text", req:false,
+   label:"Avez-vous un engagement concret que vous tenez vis-à-vis de vos clients ?",
+   help:"Un délai ou une promesse vérifiable, c'est très fort pour convaincre.",
+   ph:"Ex : rappel sous 24h, premier rendez-vous sous 5 jours, bilan présenté sous 3 mois"},
+  {id:"digital", s:1, type:"textarea", req:false,
+   label:"Quels outils et services digitaux proposez-vous ?",
+   help:"Logiciel de gestion en ligne, appli mobile, dématérialisation, tableaux de bord temps réel...",
+   ex:"Comptabilité 100 % dématérialisée via [outil]. Tableau de bord mensuel consultable en ligne. Signature électronique des documents."},
+  {id:"rdv", s:2, type:"textarea", req:true,
+   label:"Comment se passe un premier rendez-vous chez vous ?",
+   help:"Modalités possibles (à l'agence, en visio, par téléphone, chez le client), disponibilités particulières (soir, samedi) et délai pour obtenir ce premier rendez-vous.",
+   ex:"Premier rendez-vous gratuit sous une semaine, à l'agence ou en visio. Possible le samedi matin sur demande. Déplacement chez le client pour les dossiers agricoles."},
+  {id:"equipe", s:2, type:"textarea", req:true,
+   label:"Quels membres de votre équipe souhaitez-vous mettre en avant ?",
+   help:"Nom, fonction et spécialité de 2 à 4 personnes clés. Elles apparaîtront sur la page de l'agence, ce qui la rend humaine et unique.",
+   ex:"Marie Dupont, expert-comptable associée, spécialité transmission. Karim Benali, responsable social et paie. Julie Martin, conseillère création d'entreprise."},
+  {id:"photos", s:2, type:"radio", req:true,
+   label:"Disposez-vous de photos professionnelles de l'équipe ou de l'agence ?",
+   help:"Des vraies photos (pas de banque d'images) renforcent fortement la crédibilité de la page.",
+   options:["Oui, disponibles","Non, mais on peut en faire","Non"]},
+  {id:"langues", s:2, type:"text", req:false,
+   label:"Parlez-vous d'autres langues que le français à l'agence ?",
+   ph:"Ex : anglais, allemand, italien"},
+  {id:"faq", s:3, type:"textarea", req:true,
+   label:"Quelles questions vos prospects vous posent-ils le plus souvent ?",
+   help:"Listez 3 à 5 questions réellement entendues. Elles alimenteront la FAQ de votre page, très utile pour ressortir sur Google et dans les réponses des IA.",
+   ex:"Combien coûte un expert-comptable pour une TPE ? Pouvez-vous reprendre ma compta en cours d'année ? Accompagnez-vous les auto-entrepreneurs ?"},
+  {id:"gbp", s:3, type:"text", req:false,
+   label:"Quel est le lien de votre fiche Google Business Profile ?",
+   help:"Le lien Google Maps de votre agence. Si vous ne l'avez pas sous la main, passez, nous la retrouverons.",
+   ph:"https://maps.google.com/..."},
+  {id:"reussites", s:3, type:"textarea", req:false,
+   label:"Pouvez-vous citer une ou deux réussites clients locales ?",
+   help:"Anonymisées si besoin. Une histoire concrète vaut mieux que dix adjectifs.",
+   ex:"Accompagnement d'un boulanger passé de 1 à 3 boutiques en 4 ans. Reprise d'une exploitation viticole transmise sans casse fiscale."},
+  {id:"partenaires", s:3, type:"textarea", req:false,
+   label:"Avec quels partenaires locaux travaillez-vous ?",
+   help:"Banques, notaires, avocats, CCI, chambres consulaires, réseaux d'entrepreneurs...",
+   ex:"Partenariat avec la CCI du Maine-et-Loire pour les ateliers création. Travail régulier avec les notaires du groupement X."},
+  {id:"vie_locale", s:3, type:"textarea", req:false,
+   label:"Participez-vous à des événements ou ateliers locaux ?",
+   help:"Permanences création, salons, ateliers, interventions dans les écoles ou réseaux locaux.",
+   ex:"Permanence mensuelle à la pépinière d'entreprises. Présents chaque année au salon de l'entrepreneuriat d'Angers."},
+  {id:"labels", s:3, type:"text", req:false,
+   label:"Avez-vous des agréments sectoriels ou labels particuliers ?",
+   help:"Hors inscription à l'Ordre des experts-comptables, commune à toutes les agences.",
+   ph:"Ex : agrément AGC, label Lucie, certification spécifique"}
+];
+
+/* ==== ETAT ==== */
+var AGENCES = [];        // {p:prio, v:ville, u:url, slug}
+var state = { answers:{}, step:-1 }; // step -1 = welcome, 0..N-1 = questions, N = recap
+var currentSlug = null;
+
+function slugFromUrl(u){
+  try{
+    var parts = u.replace(/\/+$/,"").split("/");
+    return parts[parts.length-1];
+  }catch(e){ return ""; }
+}
+function storageKey(){ return "fiche-agence-" + (currentSlug || "libre"); }
+function saveDraft(){
+  try{ localStorage.setItem(storageKey(), JSON.stringify(state.answers)); }catch(e){}
+}
+function loadDraft(){
+  try{
+    var raw = localStorage.getItem(storageKey());
+    if(raw){ state.answers = JSON.parse(raw) || {}; }
+  }catch(e){}
+}
+
+/* ==== CHARGEMENT LISTE AGENCES ==== */
+function loadAgences(){
+  if(ENDPOINT === "APPS_SCRIPT_URL"){ initFromParams(); render(); return; }
+  fetch(ENDPOINT + "?action=list")
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      AGENCES = (data.agences || []).map(function(a){
+        a.slug = slugFromUrl(a.u); return a;
+      });
+      initFromParams(); render();
+    })
+    .catch(function(){ initFromParams(); render(); });
+}
+function initFromParams(){
+  var p = new URLSearchParams(location.search);
+  var a = p.get("a");
+  if(a){
+    var found = AGENCES.filter(function(x){ return x.slug === a; })[0];
+    if(found){
+      currentSlug = found.slug;
+      loadDraft();
+      state.answers.agence = found.slug;
+    }
+  }
+  updateTopbar();
+}
+function selectedAgence(){
+  return AGENCES.filter(function(x){ return x.slug === state.answers.agence; })[0] || null;
+}
+function updateTopbar(){
+  var ag = selectedAgence();
+  document.getElementById("topAgence").textContent = ag ? ("Agence de " + ag.v) : "Fiche agence";
+}
+
+/* ==== RENDER ==== */
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+
+function render(){
+  var stage = document.getElementById("stage");
+  var meta = document.getElementById("meta");
+  var bar = document.getElementById("bar");
+  window.scrollTo(0,0);
+
+  if(state.step === -1){ // WELCOME
+    meta.style.display = "none";
+    bar.style.width = "0%";
+    stage.innerHTML =
+      '<div class="card welcome">' +
+      '<div class="bar"></div>' +
+      '<h1>Faites ressortir votre agence sur Google et les moteurs IA</h1>' +
+      '<p class="help">Votre page agence sur inextenso.fr est ce que voient vos futurs clients quand ils cherchent un expert-comptable dans votre ville, sur Google comme sur ChatGPT ou Perplexity. Pour ressortir devant vos concurrents locaux, il faut du concret et du spécifique. C\'est vous qui détenez cette matière, personne d\'autre ne peut la fournir.</p>' +
+      '<div class="badges">' +
+      '<div class="badge"><div class="v">15 min</div><div class="l">pour remplir cette fiche</div></div>' +
+      '<div class="badge"><div class="v">21</div><div class="l">questions, dont 8 facultatives</div></div>' +
+      '<div class="badge"><div class="v">Auto</div><div class="l">brouillon sauvegardé, revenez quand vous voulez</div></div>' +
+      '</div>' +
+      '<p class="help" style="margin-bottom:8px;"><strong>3 conseils pour des réponses qui font la différence</strong></p>' +
+      '<ul>' +
+      '<li>Soyez concret et chiffré. « 18 collaborateurs, 3 experts-comptables » vaut mieux que « une équipe expérimentée ».</li>' +
+      '<li>Mettez en avant vos spécialités sectorielles, c\'est ce qui vous distingue le plus.</li>' +
+      '<li>Répondez comme si vous parliez à un futur client, avec des faits vérifiables.</li>' +
+      '</ul>' +
+      '<div class="nav"><span></span><button class="btn orange" onclick="go(0)">Commencer &rsaquo;</button></div>' +
+      '</div>';
+    return;
+  }
+
+  if(state.step >= QUESTIONS.length){ renderRecap(); return; }
+
+  var q = QUESTIONS[state.step];
+  meta.style.display = "flex";
+  document.getElementById("metaSection").textContent = SECTIONS[q.s];
+  document.getElementById("metaCount").textContent = "Question " + (state.step+1) + " sur " + QUESTIONS.length;
+  bar.style.width = Math.round((state.step) / (QUESTIONS.length+1) * 100) + "%";
+
+  var html = '<div class="card">';
+  html += '<h2>' + esc(q.label) + (q.req ? '' : '<span class="optional-pill">Facultatif</span>') + '</h2>';
+  if(q.help) html += '<p class="help">' + esc(q.help) + '</p>';
+  if(q.ex) html += '<div class="example"><strong>Exemple de bonne réponse</strong>' + esc(q.ex) + '</div>';
+
+  var v = state.answers[q.id];
+
+  if(q.type === "agence"){
+    html += '<label class="f" for="in_agence">Votre agence</label>';
+    if(AGENCES.length){
+      html += '<select id="in_agence">' + '<option value="">— Choisissez votre agence —</option>' +
+        AGENCES.map(function(a){
+          return '<option value="'+esc(a.slug)+'"'+(v===a.slug?' selected':'')+'>'+esc(a.v)+' — '+esc(a.slug)+'</option>';
+        }).join("") + '</select>';
+    } else {
+      html += '<input type="text" id="in_agence_libre" placeholder="Ville de votre agence" value="'+esc(state.answers.agence_libre||"")+'">';
+    }
+  } else if(q.type === "fields"){
+    q.fields.forEach(function(f){
+      var fv = (v && typeof v === "object") ? (v[f.k]||"") : "";
+      html += '<label class="f" for="in_'+f.k+'">'+esc(f.label)+'</label>';
+      html += '<input type="'+f.type+'" id="in_'+f.k+'" placeholder="'+esc(f.ph||"")+'" value="'+esc(fv)+'">';
+    });
+  } else if(q.type === "textarea"){
+    html += '<textarea id="in_main" placeholder="'+esc(q.ph||"Votre réponse...")+'">'+esc(v||"")+'</textarea>';
+  } else if(q.type === "radio"){
+    html += '<div class="radio-row">' + q.options.map(function(o){
+      return '<label><input type="radio" name="in_radio" value="'+esc(o)+'"'+(v===o?' checked':'')+'> '+esc(o)+'</label>';
+    }).join("") + '</div>';
+  } else {
+    var t = q.type === "number" ? "number" : "text";
+    html += '<input type="'+t+'" id="in_main" placeholder="'+esc(q.ph||"")+'" value="'+esc(v||"")+'"'+(q.min?' min="'+q.min+'" max="'+q.max+'"':'')+'>';
+  }
+
+  html += '<div class="err" id="err">Cette réponse est nécessaire pour construire votre page.</div>';
+  html += '<div class="nav">';
+  html += '<button class="btn ghost" onclick="go('+(state.step-1)+')">&lsaquo; Précédent</button>';
+  html += '<span class="keyhint"><kbd>Entrée</kbd> pour continuer</span>';
+  html += '<button class="btn orange" onclick="next()">'+(state.step===QUESTIONS.length-1?'Voir le récapitulatif':'Suivant')+' &rsaquo;</button>';
+  html += '</div>';
+  html += '<div class="savemsg">Brouillon sauvegardé automatiquement sur cet appareil.</div>';
+  html += '</div>';
+  stage.innerHTML = html;
+
+  var first = stage.querySelector("input,textarea,select");
+  if(first) first.focus();
+}
+
+function collect(){
+  var q = QUESTIONS[state.step];
+  if(q.type === "agence"){
+    var sel = document.getElementById("in_agence");
+    if(sel){ state.answers.agence = sel.value; currentSlug = sel.value || null; }
+    else {
+      var lib = document.getElementById("in_agence_libre");
+      state.answers.agence_libre = lib ? lib.value.trim() : "";
+      state.answers.agence = "";
+    }
+    updateTopbar();
+  } else if(q.type === "fields"){
+    var obj = {};
+    q.fields.forEach(function(f){
+      var el = document.getElementById("in_"+f.k);
+      obj[f.k] = el ? el.value.trim() : "";
+    });
+    state.answers[q.id] = obj;
+  } else if(q.type === "radio"){
+    var checked = document.querySelector('input[name=in_radio]:checked');
+    state.answers[q.id] = checked ? checked.value : "";
+  } else {
+    var el2 = document.getElementById("in_main");
+    state.answers[q.id] = el2 ? el2.value.trim() : "";
+  }
+  saveDraft();
+}
+
+function valid(){
+  var q = QUESTIONS[state.step];
+  if(!q.req) return true;
+  var v = state.answers[q.id];
+  if(q.type === "agence") return !!(state.answers.agence || state.answers.agence_libre);
+  if(q.type === "fields") return q.fields.every(function(f){ return v && v[f.k]; });
+  return !!v;
+}
+
+function next(){
+  collect();
+  if(!valid()){ document.getElementById("err").style.display = "block"; return; }
+  go(state.step + 1);
+}
+function go(n){
+  if(state.step >= 0 && state.step < QUESTIONS.length) collect();
+  state.step = Math.max(-1, Math.min(n, QUESTIONS.length));
+  render();
+}
+
+/* ==== RECAP + ENVOI ==== */
+function displayValue(q){
+  var v = state.answers[q.id];
+  if(q.type === "agence"){
+    var ag = selectedAgence();
+    return ag ? ag.v : (state.answers.agence_libre || "");
+  }
+  if(q.type === "fields"){
+    if(!v) return "";
+    return q.fields.map(function(f){ return v[f.k] ? f.label + " : " + v[f.k] : ""; }).filter(Boolean).join("\n");
+  }
+  return v || "";
+}
+function renderRecap(){
+  var meta = document.getElementById("meta");
+  meta.style.display = "flex";
+  document.getElementById("metaSection").textContent = "Récapitulatif";
+  document.getElementById("metaCount").textContent = "Dernière étape";
+  document.getElementById("bar").style.width = "96%";
+  var html = '<div class="card"><h2>Vérifiez vos réponses avant envoi</h2>';
+  html += '<p class="help">Vous pouvez modifier chaque réponse. Une fois envoyée, la fiche part directement à l\'équipe qui optimise votre page.</p>';
+  QUESTIONS.forEach(function(q, i){
+    var dv = displayValue(q);
+    html += '<div class="recap-item"><div class="q">'+esc(q.label)+'</div>';
+    html += '<div class="a'+(dv?'':' empty')+'">'+(dv?esc(dv):'Non renseigné')+'</div>';
+    html += '<button onclick="go('+i+')">Modifier</button></div>';
+  });
+  html += '<div class="err" id="err">L\'envoi a échoué. Vérifiez votre connexion et réessayez.</div>';
+  html += '<div class="nav">';
+  html += '<button class="btn ghost" onclick="go('+(QUESTIONS.length-1)+')">&lsaquo; Précédent</button>';
+  html += '<button class="btn orange" id="sendBtn" onclick="send()">Envoyer ma fiche &rsaquo;</button>';
+  html += '</div></div>';
+  document.getElementById("stage").innerHTML = html;
+}
+function send(){
+  var btn = document.getElementById("sendBtn");
+  btn.disabled = true; btn.textContent = "Envoi en cours...";
+  var ag = selectedAgence();
+  var payload = {
+    action: "submit",
+    slug: state.answers.agence || "",
+    ville: ag ? ag.v : (state.answers.agence_libre || ""),
+    url: ag ? ag.u : "",
+    answers: state.answers
+  };
+  fetch(ENDPOINT, {
+    method: "POST",
+    body: JSON.stringify(payload)  // pas de header Content-Type : évite le preflight CORS
+  }).then(function(r){ return r.json(); })
+    .then(function(res){
+      if(res && res.ok){ renderDone(); try{ localStorage.removeItem(storageKey()); }catch(e){} }
+      else throw new Error("bad response");
+    })
+    .catch(function(){
+      btn.disabled = false; btn.textContent = "Envoyer ma fiche ›";
+      document.getElementById("err").style.display = "block";
+    });
+}
+function renderDone(){
+  document.getElementById("meta").style.display = "none";
+  document.getElementById("bar").style.width = "100%";
+  var ag = selectedAgence();
+  document.getElementById("stage").innerHTML =
+    '<div class="card done">' +
+    '<div class="check">&#10003;</div>' +
+    '<h2>Merci !</h2>' +
+    '<p class="help">Votre fiche' + (ag ? ' pour l\'agence de <strong>' + esc(ag.v) + '</strong>' : '') +
+    ' a bien été transmise. Elle va servir à enrichir votre page sur inextenso.fr et votre visibilité locale sur Google et les moteurs IA.</p>' +
+    '<p class="help">Si vous souhaitez compléter ou corriger quelque chose, renvoyez simplement le formulaire, la version la plus récente sera utilisée.</p>' +
+    '</div>';
+}
+
+/* ==== CLAVIER ==== */
+document.addEventListener("keydown", function(e){
+  if(e.key === "Enter" && !e.shiftKey && state.step >= 0 && state.step < QUESTIONS.length){
+    var tag = document.activeElement ? document.activeElement.tagName : "";
+    if(tag !== "TEXTAREA"){ e.preventDefault(); next(); }
+  }
+});
+
+loadAgences();
+</script>
+</body>
+</html>
