@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Arimo:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#00002C; --orange:#F58220; --cyan:#00AADB; --grey:#EFF4F6;
+    --ink:#000000; --orange:#F58220; --cyan:#00AADB; --grey:#EFF4F6;
     --bleu:#8FD8F9; --rose:#E43E80; --jaune:#F9ED03; --rouge:#F04130; --vert:#6CB989; --or:#FFCB03;
     --font-title:"Trade Gothic LT Std BoldCn","Oswald","Arial Narrow",sans-serif;
     --font-body:"Trade Gothic LT Std","Arimo",Arial,sans-serif;
@@ -20,10 +20,10 @@
   /* Header */
   .topbar{background:var(--ink);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
   .topbar img{height:44px;width:auto;display:block;}
-  .topbar .who{color:#aac4e6;font-size:14px;text-align:right;line-height:1.3;}
+  .topbar .who{color:#b5b5b5;font-size:14px;text-align:right;line-height:1.3;}
   .topbar .who strong{color:#fff;font-family:var(--font-title);text-transform:uppercase;font-weight:500;font-size:15px;letter-spacing:.03em;display:block;}
   /* Progress */
-  .progress{background:#00104a;height:6px;position:relative;}
+  .progress{background:#222222;height:6px;position:relative;}
   .progress .fill{position:absolute;left:0;top:0;bottom:0;background:var(--orange);width:0%;transition:width .35s ease;}
   .meta{max-width:720px;margin:26px auto 0;padding:0 22px;width:100%;display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
   .meta .section{font-family:var(--font-title);text-transform:uppercase;font-size:14px;letter-spacing:.05em;font-weight:600;padding:4px 14px;background:var(--orange);color:#fff;}
@@ -116,9 +116,9 @@ var ENDPOINT = "APPS_SCRIPT_URL"; // URL du deploiement Apps Script (voir README
 var SECTIONS = ["Votre agence", "Expertises & différenciation", "Disponibilité & relation client", "Preuves & vie locale"];
 // Palette campagne In Extenso (Créez / Pilotez / Développez / Cédez)
 var SECTION_COLORS = [
-  {bg:"#8FD8F9", txt:"#00002C"},   // bleu ciel
+  {bg:"#8FD8F9", txt:"#000000"},   // bleu ciel
   {bg:"#E43E80", txt:"#FFFFFF"},   // rose
-  {bg:"#F9ED03", txt:"#00002C"},   // jaune
+  {bg:"#F9ED03", txt:"#000000"},   // jaune
   {bg:"#F04130", txt:"#FFFFFF"}    // rouge
 ];
 var QUESTIONS = [
@@ -425,7 +425,7 @@ function renderRecap(){
   meta.style.display = "flex";
   var secEl = document.getElementById("metaSection");
   secEl.textContent = "Récapitulatif";
-  secEl.style.background = "#00002C"; secEl.style.color = "#FFFFFF";
+  secEl.style.background = "#000000"; secEl.style.color = "#FFFFFF";
   document.getElementById("metaCount").textContent = "Dernière étape";
   document.getElementById("bar").style.width = "96%";
   var html = '<div class="card"><h2>Vérifiez vos réponses avant envoi</h2>';
