@@ -20,7 +20,7 @@ Formulaire charté In Extenso pour collecter la matière différenciante des age
 
 ## Liens pré-remplis par agence
 
-Format : `https://charliedatashake.github.io/fiche-agence-inextenso/?a=<slug>`
+Format : `https://charliedatashake.github.io/questionnaire-agence-seo-geo/?a=<slug>`
 
 Le slug = dernier segment de l'URL de la page agence sur inextenso.fr.
 Exemple : `https://www.inextenso.fr/agence/expert-comptable-bordeaux/` → `?a=expert-comptable-bordeaux`

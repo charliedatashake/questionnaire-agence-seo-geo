@@ -10,6 +10,7 @@
 <style>
   :root{
     --ink:#00002C; --orange:#F58220; --cyan:#00AADB; --grey:#EFF4F6;
+    --bleu:#8FD8F9; --rose:#E43E80; --jaune:#F9ED03; --rouge:#F04130; --vert:#6CB989; --or:#FFCB03;
     --font-title:"Trade Gothic LT Std BoldCn","Oswald","Arial Narrow",sans-serif;
     --font-body:"Trade Gothic LT Std","Arimo",Arial,sans-serif;
   }
@@ -25,7 +26,7 @@
   .progress{background:#00104a;height:6px;position:relative;}
   .progress .fill{position:absolute;left:0;top:0;bottom:0;background:var(--orange);width:0%;transition:width .35s ease;}
   .meta{max-width:720px;margin:26px auto 0;padding:0 22px;width:100%;display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
-  .meta .section{font-family:var(--font-title);text-transform:uppercase;color:var(--orange);font-size:15px;letter-spacing:.05em;font-weight:600;}
+  .meta .section{font-family:var(--font-title);text-transform:uppercase;font-size:14px;letter-spacing:.05em;font-weight:600;padding:4px 14px;background:var(--orange);color:#fff;}
   .meta .count{font-size:13px;color:#66707a;}
   /* Card */
   .stage{flex:1;display:flex;flex-direction:column;}
@@ -34,8 +35,8 @@
   h1{font-size:34px;}
   h2{font-size:26px;}
   .help{color:#4a5560;font-size:15.5px;margin:0 0 20px;}
-  .example{background:var(--grey);border-left:4px solid var(--cyan);padding:12px 16px;font-size:14.5px;color:#33404c;margin:0 0 20px;}
-  .example strong{font-family:var(--font-title);text-transform:uppercase;font-weight:600;font-size:13px;color:var(--cyan);letter-spacing:.04em;display:block;margin-bottom:4px;}
+  .example{background:var(--grey);border-left:4px solid var(--vert);padding:12px 16px;font-size:14.5px;color:#33404c;margin:0 0 20px;}
+  .example strong{font-family:var(--font-title);text-transform:uppercase;font-weight:600;font-size:13px;color:#3d8a63;letter-spacing:.04em;display:block;margin-bottom:4px;}
   .optional-pill{display:inline-block;background:#e6edf2;color:#4a5560;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:3px 10px;border-radius:20px;vertical-align:middle;margin-left:8px;}
   label.f{display:block;font-weight:700;font-size:15px;margin:16px 0 6px;color:var(--ink);}
   input[type=text],input[type=email],input[type=tel],input[type=number],input[type=url],textarea,select{
@@ -60,12 +61,14 @@
   .keyhint{font-size:13px;color:#8a949e;}
   .keyhint kbd{background:#fff;border:1px solid #d6dee5;padding:1px 7px;font-size:12px;border-radius:3px;font-family:var(--font-body);}
   /* Welcome */
-  .welcome .bar{width:74px;height:6px;background:var(--orange);margin:0 0 22px;}
+  .welcome .bar{width:120px;height:6px;background:linear-gradient(to right,var(--bleu) 0 25%,var(--rose) 25% 50%,var(--jaune) 50% 75%,var(--rouge) 75% 100%);margin:0 0 22px;}
   .welcome ul{padding-left:20px;margin:0 0 20px;}
   .welcome li{margin-bottom:8px;}
   .badges{display:flex;gap:14px;flex-wrap:wrap;margin:24px 0;}
-  .badge{background:var(--grey);padding:14px 20px;flex:1;min-width:170px;}
-  .badge .v{font-family:var(--font-title);font-size:26px;color:var(--orange);line-height:1.1;}
+  .badge{background:var(--grey);padding:14px 20px;flex:1;min-width:170px;border-left:4px solid var(--bleu);}
+  .badge:nth-child(2){border-left-color:var(--rose);}
+  .badge:nth-child(3){border-left-color:var(--jaune);}
+  .badge .v{font-family:var(--font-title);font-size:26px;color:var(--ink);line-height:1.1;}
   .badge .l{font-size:13.5px;color:#4a5560;}
   /* Recap */
   .recap-item{border-bottom:1px solid #e3e9ee;padding:13px 0;}
@@ -111,6 +114,13 @@ var ENDPOINT = "APPS_SCRIPT_URL"; // URL du deploiement Apps Script (voir README
 
 /* ==== QUESTIONNAIRE V2 ==== */
 var SECTIONS = ["Votre agence", "Expertises & différenciation", "Disponibilité & relation client", "Preuves & vie locale"];
+// Palette campagne In Extenso (Créez / Pilotez / Développez / Cédez)
+var SECTION_COLORS = [
+  {bg:"#8FD8F9", txt:"#00002C"},   // bleu ciel
+  {bg:"#E43E80", txt:"#FFFFFF"},   // rose
+  {bg:"#F9ED03", txt:"#00002C"},   // jaune
+  {bg:"#F04130", txt:"#FFFFFF"}    // rouge
+];
 var QUESTIONS = [
   {id:"agence", s:0, type:"agence", req:true,
    label:"Quelle est votre agence ?",
@@ -294,11 +304,14 @@ function render(){
 
   var q = QUESTIONS[state.step];
   meta.style.display = "flex";
-  document.getElementById("metaSection").textContent = SECTIONS[q.s];
+  var sc = SECTION_COLORS[q.s];
+  var secEl = document.getElementById("metaSection");
+  secEl.textContent = SECTIONS[q.s];
+  secEl.style.background = sc.bg; secEl.style.color = sc.txt;
   document.getElementById("metaCount").textContent = "Question " + (state.step+1) + " sur " + QUESTIONS.length;
   bar.style.width = Math.round((state.step) / (QUESTIONS.length+1) * 100) + "%";
 
-  var html = '<div class="card">';
+  var html = '<div class="card" style="border-top-color:' + sc.bg + '">';
   html += '<h2>' + esc(q.label) + (q.req ? '' : '<span class="optional-pill">Facultatif</span>') + '</h2>';
   if(q.help) html += '<p class="help">' + esc(q.help) + '</p>';
   if(q.ex) html += '<div class="example"><strong>Exemple de bonne réponse</strong>' + esc(q.ex) + '</div>';
@@ -410,7 +423,9 @@ function displayValue(q){
 function renderRecap(){
   var meta = document.getElementById("meta");
   meta.style.display = "flex";
-  document.getElementById("metaSection").textContent = "Récapitulatif";
+  var secEl = document.getElementById("metaSection");
+  secEl.textContent = "Récapitulatif";
+  secEl.style.background = "#00002C"; secEl.style.color = "#FFFFFF";
   document.getElementById("metaCount").textContent = "Dernière étape";
   document.getElementById("bar").style.width = "96%";
   var html = '<div class="card"><h2>Vérifiez vos réponses avant envoi</h2>';
